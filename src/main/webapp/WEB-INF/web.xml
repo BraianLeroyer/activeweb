@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+   <display-name>activeweb</display-name>
+    
+    <!--
+        FILTER (4 importantes configuraciones)
+        indicar filter: dispatcher proviene de org.javalite
+        
+        encoding: es el encoding que setea a las request y response HTTP. UTF-8 resuelve problemas de internalizacion.
+        
+        exclusion: elementos separados por comas, de cadenas en la URI la cuel el framework ignorara(no intenta procesar los request a controladores) son archivos estaticos.
+        
+        root_controler: nombre del controlador que se llamara automaticamente si no se indica un path en la URL, con la accion default index.
+    -->
+    <filter>
+        <filter-name>dispatcher</filter-name>
+        <filter-class>org.javalite.activeweb.RequestDispatcher</filter-class>
+           
+        <init-param>
+            <param-name>root_controller</param-name>
+            <param-value>home</param-value>
+        </init-param>
+    </filter>
+    
+    <!--
+        indica que para cualquier patron de la URL va a utilizar el dispatcher que configuramos arriba.
+    -->
+    <filter-mapping>
+        <filter-name>dispatcher</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+</web-app>
